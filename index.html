@@ -8,6 +8,13 @@
 <meta property="og:title" content="Kayyoom Ali — Senior React Native Engineer">
 <meta property="og:description" content="React Native apps that don't crash in the field. 99.51% crash-free, BLE integrations, OTA pipelines.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://kayyoomali.netlify.app/">
+<meta property="og:image" content="https://kayyoomali.netlify.app/docs/preview-dark.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://kayyoomali.netlify.app/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Kayyoom Ali","jobTitle":"Senior React Native Engineer","url":"https://kayyoomali.netlify.app/","email":"mailto:kayyoomali17@gmail.com","address":{"@type":"PostalAddress","addressLocality":"New Delhi","addressCountry":"IN"},"sameAs":["https://www.linkedin.com/in/kayyoom-ali-bb989319b/","https://github.com/techAli17"],"knowsAbout":["React Native","TypeScript","Swift","Kotlin","Bluetooth Low Energy","Mobile release engineering","Offline-first apps"]}
+</script>
 <meta name="theme-color" content="#0F1114">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230F1114'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial' font-weight='700' font-size='34' fill='%238BD3FF'%3Ek.%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +24,11 @@
 <script>
   // Apply saved theme/accent before paint to avoid a flash
   try {
-    var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t;
+    var t = localStorage.getItem('theme');
+    if (t === 'light') {
+      document.documentElement.dataset.theme = 'light';
+      document.querySelector('meta[name="theme-color"]').content = '#F6F5F1';
+    }
     var a = localStorage.getItem('accent'); if (a) document.documentElement.style.setProperty('--accent', a);
   } catch (e) {}
 </script>
@@ -34,6 +45,7 @@
     <a href="#top" class="logo">kayyoom<span class="accent">.</span>dev</a>
     <div class="nav__links">
       <a href="#work" data-nav>work</a>
+      <a href="#process" data-nav>process</a>
       <a href="#experience" data-nav>experience</a>
       <a href="#skills" data-nav>skills</a>
       <a href="#contact" data-nav>contact</a>
@@ -57,10 +69,10 @@
   <div class="hero__copy">
     <div class="status reveal">
       <span class="pulse"></span>
-      <span>Open to senior roles at product companies · New Delhi, India</span>
+      <span><strong class="status__hot">Actively interviewing</strong> · Senior React Native / Mobile Engineer · Remote worldwide or on-site in <span class="status__loc">Delhi NCR · Bengaluru · Hyderabad</span></span>
     </div>
     <h1 class="hero__title" data-split>Kayyoom Ali builds React Native apps that <em class="accent">don't crash in the field.</em></h1>
-    <p class="hero__lede reveal">Senior React Native Engineer with 4+ years owning production iOS and Android apps across healthcare, logistics and field operations — from native modules in Swift and Kotlin to BLE hardware integrations and OTA release pipelines.</p>
+    <p class="hero__lede reveal">Senior React Native Engineer with 4+ years owning production iOS and Android apps across healthcare, logistics and field operations. I take features from product brief to App Store and keep them healthy after launch: architecture, Swift and Kotlin native modules, BLE hardware, OTA releases and crash monitoring.</p>
     <div class="cta-row reveal">
       <a href="mailto:kayyoomali17@gmail.com" class="btn btn--primary magnetic">Get in touch
         <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -100,8 +112,8 @@
 <!-- MARQUEE -->
 <div class="marquee" aria-hidden="true">
   <div class="marquee__track">
-    <span>React Native</span><span>TypeScript</span><span>Swift</span><span>Kotlin</span><span>BLE</span><span>Hermes</span><span>Reanimated</span><span>Redux Toolkit</span><span>Firebase</span><span>CodePush</span><span>Sentry</span><span>Detox</span>
-    <span>React Native</span><span>TypeScript</span><span>Swift</span><span>Kotlin</span><span>BLE</span><span>Hermes</span><span>Reanimated</span><span>Redux Toolkit</span><span>Firebase</span><span>CodePush</span><span>Sentry</span><span>Detox</span>
+    <span>React Native</span><span>TypeScript</span><span>Swift</span><span>Kotlin</span><span>BLE</span><span>Hermes</span><span>Reanimated</span><span>Redux Toolkit</span><span>Firebase</span><span>CodePush</span><span>Sentry</span><span>Detox</span><span>VisionCamera</span><span>Nitro Modules</span>
+    <span>React Native</span><span>TypeScript</span><span>Swift</span><span>Kotlin</span><span>BLE</span><span>Hermes</span><span>Reanimated</span><span>Redux Toolkit</span><span>Firebase</span><span>CodePush</span><span>Sentry</span><span>Detox</span><span>VisionCamera</span><span>Nitro Modules</span>
   </div>
 </div>
 
@@ -130,41 +142,166 @@
   <div class="cards">
     <article class="card reveal" data-cat="field health" data-project="sathi">
       <div class="card__top"><h3>Samplify Sathi</h3><span class="mono small muted">iOS · Android</span></div>
-      <p>Field-force management for phlebotomy operations. Reusable BLE module with auto-connect, retry and manual fallback that cut device pairing time by 90%.</p>
+      <p>Field-force app for phlebotomists collecting samples at patients' homes. A reusable BLE layer with auto-connect, retry and manual fallback cut device pairing time by 90%.</p>
+      <div class="card__result mono small"><span class="accent">90%</span> faster pairing · <span class="accent">99.51%</span> crash-free</div>
       <div class="tags"><span>React Native</span><span>BLE</span><span>Firebase</span><span>Redux Toolkit</span></div>
-      <div class="card__foot"><button type="button" class="card__more" data-open-project="sathi">Details <span aria-hidden="true">→</span></button><div class="stores"><a class="store" href="https://play.google.com/store/apps/details?id=com.samplify.pheblo" target="_blank" rel="noopener" aria-label="Samplify Sathi on Google Play"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 3v18l15-9z"/></svg>Play</a><a class="store" href="https://apps.apple.com/in/app/samplify-phlebo/id6654902760" target="_blank" rel="noopener" aria-label="Samplify Sathi on the App Store"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>App Store</a></div></div>
+      <div class="card__foot"><button type="button" class="card__more" data-open-project="sathi">Case study <span aria-hidden="true">→</span></button><div class="stores"><a class="store" href="https://play.google.com/store/apps/details?id=com.samplify.pheblo" target="_blank" rel="noopener" aria-label="Samplify Sathi on Google Play"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 3v18l15-9z"/></svg>Play</a><a class="store" href="https://apps.apple.com/in/app/samplify-phlebo/id6654902760" target="_blank" rel="noopener" aria-label="Samplify Sathi on the App Store"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>App Store</a></div></div>
     </article>
     <article class="card reveal" data-cat="field health" data-project="sarthi">
       <div class="card__top"><h3>Samplify Sarthi</h3><span class="mono small muted">iOS · Android</span></div>
-      <p>Logistics and sample-tracking platform with real-time sync and a custom offline layer built for patchy networks in the field.</p>
+      <p>Runner app for sample pickup and delivery: background location, barcode scanning, proof of handover, and a monitor that catches phones whose GPS has silently hung.</p>
+      <div class="card__result mono small"><span class="accent">8</span> backend services re-routable without a release</div>
       <div class="tags"><span>React Native</span><span>Swift</span><span>Kotlin</span><span>Firebase</span></div>
-      <div class="card__foot"><button type="button" class="card__more" data-open-project="sarthi">Details <span aria-hidden="true">→</span></button><div class="stores"><a class="store" href="https://play.google.com/store/apps/details?id=com.samplify&amp;hl=en-IN" target="_blank" rel="noopener" aria-label="Samplify Sarthi on Google Play"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 3v18l15-9z"/></svg>Play</a><a class="store" href="https://apps.apple.com/in/app/sarthi-runner/id6566180771" target="_blank" rel="noopener" aria-label="Samplify Sarthi on the App Store"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>App Store</a></div></div>
+      <div class="card__foot"><button type="button" class="card__more" data-open-project="sarthi">Case study <span aria-hidden="true">→</span></button><div class="stores"><a class="store" href="https://play.google.com/store/apps/details?id=com.samplify&amp;hl=en-IN" target="_blank" rel="noopener" aria-label="Samplify Sarthi on Google Play"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 3v18l15-9z"/></svg>Play</a><a class="store" href="https://apps.apple.com/in/app/sarthi-runner/id6566180771" target="_blank" rel="noopener" aria-label="Samplify Sarthi on the App Store"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>App Store</a></div></div>
     </article>
     <article class="card reveal" data-cat="health commerce" data-project="phelans">
       <div class="card__top"><h3>Phelans Pharmacy</h3><span class="mono small muted">Android</span></div>
       <p>Medicine-delivery app with a catalog of thousands of SKUs. Redux Toolkit architecture for cart, profile and inventory without performance regressions.</p>
       <div class="tags"><span>Redux Toolkit</span><span>Firestore</span><span>Hooks</span></div>
-      <div class="card__foot"><button type="button" class="card__more" data-open-project="phelans">Details <span aria-hidden="true">→</span></button><div class="stores"><a class="store" href="https://play.google.com/store/apps/details?id=com.phelans&amp;hl=en-IN" target="_blank" rel="noopener" aria-label="Phelans Pharmacy on Google Play"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 3v18l15-9z"/></svg>Play</a></div></div>
+      <div class="card__foot"><button type="button" class="card__more" data-open-project="phelans">Case study <span aria-hidden="true">→</span></button><div class="stores"><a class="store" href="https://play.google.com/store/apps/details?id=com.phelans&amp;hl=en-IN" target="_blank" rel="noopener" aria-label="Phelans Pharmacy on Google Play"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 3v18l15-9z"/></svg>Play</a></div></div>
     </article>
     <article class="card reveal" data-cat="commerce" data-project="lokbest">
       <div class="card__top"><h3>LokBest</h3><span class="mono small muted">iOS · Android</span></div>
       <p>Grocery commerce app with Google and Facebook OAuth onboarding and an analytics event taxonomy defined with the product team.</p>
       <div class="tags"><span>OAuth</span><span>Firebase Analytics</span></div>
-      <div class="card__foot"><button type="button" class="card__more" data-open-project="lokbest">Details <span aria-hidden="true">→</span></button><div class="stores"><a class="store" href="https://play.google.com/store/apps/details?id=com.lokbest&amp;hl=en-IN" target="_blank" rel="noopener" aria-label="LokBest on Google Play"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 3v18l15-9z"/></svg>Play</a><a class="store" href="https://apps.apple.com/in/app/lokbest/id1571909931" target="_blank" rel="noopener" aria-label="LokBest on the App Store"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>App Store</a></div></div>
+      <div class="card__foot"><button type="button" class="card__more" data-open-project="lokbest">Case study <span aria-hidden="true">→</span></button><div class="stores"><a class="store" href="https://play.google.com/store/apps/details?id=com.lokbest&amp;hl=en-IN" target="_blank" rel="noopener" aria-label="LokBest on Google Play"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 3v18l15-9z"/></svg>Play</a><a class="store" href="https://apps.apple.com/in/app/lokbest/id1571909931" target="_blank" rel="noopener" aria-label="LokBest on the App Store"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>App Store</a></div></div>
     </article>
     <article class="card reveal" data-cat="commerce" data-project="swagmee">
       <div class="card__top"><h3>Swagmee Salon</h3><span class="mono small muted">Android</span></div>
       <p>At-home salon services platform with end-to-end Razorpay payments and pixel-perfect UI from Figma.</p>
       <div class="tags"><span>Razorpay</span><span>OAuth</span><span>Figma → RN</span></div>
-      <div class="card__foot"><button type="button" class="card__more" data-open-project="swagmee">Details <span aria-hidden="true">→</span></button><div class="stores"><a class="store" href="https://play.google.com/store/apps/details?id=com.swagmee&amp;hl=en-IN" target="_blank" rel="noopener" aria-label="Swagmee Salon on Google Play"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 3v18l15-9z"/></svg>Play</a></div></div>
+      <div class="card__foot"><button type="button" class="card__more" data-open-project="swagmee">Case study <span aria-hidden="true">→</span></button><div class="stores"><a class="store" href="https://play.google.com/store/apps/details?id=com.swagmee&amp;hl=en-IN" target="_blank" rel="noopener" aria-label="Swagmee Salon on Google Play"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 3v18l15-9z"/></svg>Play</a></div></div>
     </article>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="wrap section">
+  <div class="section__head reveal">
+    <div class="eyebrow">02 / how I work</div>
+    <h2>From product brief to a healthy release</h2>
+    <p class="section__lede">How I take a feature from idea to production and keep it working afterwards. I follow the same six steps whether it's a one-screen fix or a new hardware integration.</p>
+  </div>
+  <ol class="flow">
+    <li class="step reveal">
+      <span class="step__n mono">01</span>
+      <h3>Shape</h3>
+      <p>Work through the brief with product and design, split it into slices that can ship on their own, and agree the API contracts and analytics events before any code.</p>
+      <span class="step__out mono small">→ scoped tickets, API contract</span>
+    </li>
+    <li class="step reveal">
+      <span class="step__n mono">02</span>
+      <h3>Design</h3>
+      <p>Anything that touches native code, persisted state or the release process gets a short design note covering state shape, failure modes, and how to roll it out and back.</p>
+      <span class="step__out mono small">→ design note, reviewed</span>
+    </li>
+    <li class="step reveal">
+      <span class="step__n mono">03</span>
+      <h3>Build</h3>
+      <p>Code is grouped by feature, with logic in hooks rather than screens. I only write Swift or Kotlin where JavaScript can't reach, and wrap shared behaviour like location or BLE once instead of in every screen.</p>
+      <span class="step__out mono small">→ typed, reviewed PRs</span>
+    </li>
+    <li class="step reveal">
+      <span class="step__n mono">04</span>
+      <h3>Verify</h3>
+      <p>Jest tests for the logic, with native modules mocked. Detox for the critical flows. Then hands-on passes on low-end Android phones and iOS, because that's where field users are.</p>
+      <span class="step__out mono small">→ green tests, device sign-off</span>
+    </li>
+    <li class="step reveal">
+      <span class="step__n mono">05</span>
+      <h3>Ship</h3>
+      <p>JavaScript-only fixes go out over the air the same day. Native changes go through the App Store and Play Console. A pre-deploy check blocks bad bundles, and rollback is one command.</p>
+      <span class="step__out mono small">→ release, rollback ready</span>
+    </li>
+    <li class="step reveal">
+      <span class="step__n mono">06</span>
+      <h3>Observe</h3>
+      <p>Sentry and Crashlytics with source maps, and new crashes triaged the same day. An in-app developer mode helps debug issues in the field. Whatever we learn goes back into step 01.</p>
+      <span class="step__out mono small">→ 99.51% crash-free</span>
+    </li>
+  </ol>
+
+  <div class="own reveal">
+    <h3 class="own__title mono">What I own as a senior engineer</h3>
+    <div class="own__grid">
+      <div><strong>Architecture</strong><span>Folder structure, state, networking and native boundaries for two production apps.</span></div>
+      <div><strong>Release quality</strong><span>The OTA pipeline, monitoring, crash triage and rollback, plus the crash-free number itself.</span></div>
+      <div><strong>Native &amp; hardware</strong><span>Swift and Kotlin modules for BLE, permissions, background work, location and SMS.</span></div>
+      <div><strong>People</strong><span>Code review, pairing and design discussions with junior developers.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ENGINEERING NOTES -->
+<section id="notes" class="wrap section">
+  <div class="section__head reveal">
+    <div class="eyebrow">03 / engineering notes</div>
+    <h2>Problems worth writing down</h2>
+    <p class="section__lede">Three production problems, how I diagnosed them, and what I built to fix them.</p>
+  </div>
+  <div class="notes">
+    <details class="note reveal">
+      <summary>
+        <span class="note__tag mono small">location · Android</span>
+        <span class="note__title">Detecting a GPS that has silently hung</span>
+        <span class="note__toggle" aria-hidden="true">+</span>
+      </summary>
+      <div class="note__body">
+        <div><h4>Problem</h4><p>On some phones the GPS stops working until the phone is restarted. Location is on, permission is granted and the provider is enabled, yet every request times out or returns a coarse Wi-Fi fix. No setting shows anything wrong, so runners carried on while their tracking went stale.</p></div>
+        <div><h4>Approach</h4><ul>
+          <li>Wrapped <code>getCurrentPosition</code> once at module load, so every existing call site is monitored without being edited.</li>
+          <li>After several failures in a row while the app is open, rule out settings causes first: location off, provider off, permission, precise location.</li>
+          <li>Then request a fresh fix from Google's fused provider and the raw <code>LocationManager</code> at the same time. If neither returns a usable fix, the GPS is stuck.</li>
+          <li>Ask the runner to restart the phone, re-check on resume and on a timer, and close the prompt as soon as a fix arrives.</li>
+        </ul></div>
+        <div><h4>Result</h4><p>A failure nobody could see is now detected from how the GPS behaves and fixed on the spot. The logic is covered by Jest tests that mock app state, location settings and the native modules.</p></div>
+      </div>
+    </details>
+
+    <details class="note reveal">
+      <summary>
+        <span class="note__tag mono small">release · OTA</span>
+        <span class="note__title">An OTA deploy that refuses to ship blind</span>
+        <span class="note__toggle" aria-hidden="true">+</span>
+      </summary>
+      <div class="note__body">
+        <div><h4>Problem</h4><p>With self-hosted OTA (Hot Updater on Firebase), each update fully replaces the JavaScript bundle inside the installed app. If Sentry is missing from a bundle, for example commented out while debugging and never restored, everyone who installs that update runs without crash reporting. Play Console then shows only a bare <code>JavascriptException</code>, and this can go unnoticed for weeks.</p></div>
+        <div><h4>Approach</h4>
+<pre class="term mono"><span class="muted">$</span> yarn ota
+<span class="ok">✓</span> verify-sentry  source ok
+<span class="ok">✓</span> hot-updater    bundle built (Hermes)
+<span class="ok">✓</span> hot-updater    uploaded → production
+<span class="ok">✓</span> verify-sentry  bundle ok
+<span class="muted"># if anything slips through:</span>
+<span class="muted">$</span> yarn ota:rollback</pre>
+          <p>A check runs before the deploy. It strips comments from the source, so a commented-out <code>Sentry.init</code> doesn't pass, and blocks the release if Sentry is missing. A second check inspects the built bundle afterwards. Updates are matched to the app version, so a bundle never reaches a binary it isn't compatible with.</p></div>
+        <div><h4>Result</h4><p>Same-day hotfixes and about 70% faster releases, without risking a release with no crash reporting. Bad releases are reversed with one command.</p></div>
+      </div>
+    </details>
+
+    <details class="note reveal">
+      <summary>
+        <span class="note__tag mono small">networking · config</span>
+        <span class="note__title">Moving 8 backend services without an app release</span>
+        <span class="note__toggle" aria-hidden="true">+</span>
+      </summary>
+      <div class="note__body">
+        <div><h4>Problem</h4><p>API hosts were hard-coded in the app, so every backend migration meant shipping a new store build and waiting for runners to update.</p></div>
+        <div><h4>Approach</h4><ul>
+          <li>Each app launch reads the base URLs from Firebase Remote Config: one root host that expands to all 8 services, plus an optional override for any single service.</li>
+          <li>Every value is validated. If the fetch fails, times out or returns something invalid, the app uses the last values that worked, then the local defaults.</li>
+          <li>Keys are prefixed per app, because Remote Config shares one namespace across the Firebase project.</li>
+        </ul></div>
+        <div><h4>Result</h4><p>The backend team can move or split services without a mobile release, and a bad config value can't take the app offline.</p></div>
+      </div>
+    </details>
   </div>
 </section>
 
 <!-- EXPERIENCE -->
 <section id="experience" class="wrap section">
   <div class="section__head reveal">
-    <div class="eyebrow">02 / experience</div>
+    <div class="eyebrow">04 / experience</div>
     <h2>Where I've shipped</h2>
   </div>
   <ol class="timeline" data-timeline>
@@ -179,7 +316,10 @@
         <li>Architected and led delivery of two flagship field-operation platforms used by thousands of concurrent users.</li>
         <li>Drove a sustained 99.51% crash-free rate through Crashlytics + Sentry monitoring, incident triage and a release-quality process.</li>
         <li>Built an OTA pipeline (Revopush / CodePush) enabling same-day hotfixes and ~70% faster release cycles.</li>
-        <li>Wrote Swift and Kotlin native modules for BLE state, permissions and background tasks.</li>
+        <li>Wrote Swift and Kotlin native modules for BLE state, permissions and background tasks, plus a Kotlin SMS Retriever module for OTP autofill.</li>
+        <li>Moved API routing for 8 backend services to Firebase Remote Config with validated fallbacks, so backend migrations no longer need an app release.</li>
+        <li>Built a GPS health monitor that detects phones whose GPS has silently hung and walks runners through recovering it.</li>
+        <li>Keep both apps on current React Native (0.84, React 19), with redux-persist migrations so updates never break on old saved state.</li>
         <li>Mentored junior developers through code review, pairing and design discussions.</li>
       </ul>
     </li>
@@ -215,16 +355,16 @@
 <!-- SKILLS -->
 <section id="skills" class="wrap section">
   <div class="section__head reveal">
-    <div class="eyebrow">03 / toolkit</div>
+    <div class="eyebrow">05 / toolkit</div>
     <h2>What I work with</h2>
   </div>
   <div class="skills">
-    <div class="skill reveal"><h3>mobile</h3><div class="pills"><span>React Native</span><span>TypeScript</span><span>Hermes</span><span>New Architecture</span><span>Reanimated</span><span>Gesture Handler</span></div></div>
-    <div class="skill reveal"><h3>native &amp; devices</h3><div class="pills"><span>Swift</span><span>Kotlin</span><span>BLE</span><span>FCM / APNs</span><span>Deep linking</span><span>Camera &amp; sensors</span></div></div>
-    <div class="skill reveal"><h3>state</h3><div class="pills"><span>Redux Toolkit</span><span>Redux Saga</span><span>Context API</span><span>Offline-first sync</span></div></div>
-    <div class="skill reveal"><h3>backend &amp; cloud</h3><div class="pills"><span>Firestore</span><span>Firebase Auth</span><span>Cloud Functions</span><span>REST APIs</span></div></div>
+    <div class="skill reveal"><h3>mobile</h3><div class="pills"><span>React Native</span><span>TypeScript</span><span>Hermes</span><span>New Architecture</span><span>Nitro Modules</span><span>Reanimated</span><span>Gesture Handler</span><span>React Navigation</span></div></div>
+    <div class="skill reveal"><h3>native &amp; devices</h3><div class="pills"><span>Swift</span><span>Kotlin</span><span>BLE</span><span>FCM / APNs</span><span>Deep linking</span><span>VisionCamera</span><span>Background location</span><span>SMS Retriever</span></div></div>
+    <div class="skill reveal"><h3>state</h3><div class="pills"><span>Redux Toolkit</span><span>Redux Saga</span><span>Context API</span><span>redux-persist</span><span>Offline-first sync</span></div></div>
+    <div class="skill reveal"><h3>backend &amp; cloud</h3><div class="pills"><span>Firestore</span><span>Firebase Auth</span><span>Cloud Functions</span><span>Remote Config</span><span>REST APIs</span><span>AWS S3</span></div></div>
     <div class="skill reveal"><h3>quality</h3><div class="pills"><span>Jest</span><span>Detox</span><span>Sentry</span><span>Crashlytics</span><span>Flipper</span></div></div>
-    <div class="skill reveal"><h3>release</h3><div class="pills"><span>CodePush</span><span>Revopush</span><span>App Store Connect</span><span>Play Console</span></div></div>
+    <div class="skill reveal"><h3>release</h3><div class="pills"><span>Hot Updater</span><span>CodePush</span><span>Revopush</span><span>App Store Connect</span><span>Play Console</span></div></div>
   </div>
   <div class="edu reveal">
     <span><strong>MCA</strong> — PSIT, Kanpur (2021)</span>
@@ -235,7 +375,7 @@
 <!-- CONTACT -->
 <section id="contact" class="wrap section contact">
   <div class="contact__card reveal" data-spotlight>
-    <div class="eyebrow">04 / contact</div>
+    <div class="eyebrow">06 / contact</div>
     <h2>Building something mobile that has to just work? Let's talk.</h2>
     <div class="email-row">
       <a href="mailto:kayyoomali17@gmail.com" class="email">kayyoomali17@gmail.com</a>
@@ -264,10 +404,11 @@
   <div class="eyebrow" data-m-platforms></div>
   <h3 id="modal-title" data-m-title></h3>
   <p data-m-desc></p>
-  <div class="modal__grid">
-    <div><h4>Challenge</h4><p data-m-problem></p></div>
-    <div><h4>What I built</h4><p data-m-build></p></div>
-  </div>
+  <dl class="modal__meta" data-m-meta></dl>
+  <div class="modal__outcomes" data-m-outcomes></div>
+  <div class="modal__block"><h4>Challenge</h4><p data-m-problem></p></div>
+  <div class="modal__block"><h4>What I built</h4><ul class="modal__list" data-m-build></ul></div>
+  <div class="modal__block" data-m-decisions-wrap><h4>Key decisions</h4><ul class="decisions" data-m-decisions></ul></div>
   <div class="tags" data-m-tags></div>
   <div class="stores stores--modal" data-m-stores></div>
 </dialog>

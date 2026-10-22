@@ -59,7 +59,7 @@
   requestAnimationFrame(() => setTimeout(() => title.classList.add('is-in'), 80));
 
   /* ---------- Scroll reveal + staggering ---------- */
-  const groups = ['.cards', '.skills', '.metrics__grid', '.hero__copy'];
+  const groups = ['.cards', '.skills', '.metrics__grid', '.hero__copy', '.flow', '.notes'];
   groups.forEach((g) => $$(`${g} > .reveal`).forEach((el, i) => el.style.setProperty('--d', `${i * 80}ms`)));
   const revealIO = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
@@ -219,26 +219,62 @@
       play: 'https://play.google.com/store/apps/details?id=com.samplify.pheblo',
       ios: 'https://apps.apple.com/in/app/samplify-phlebo/id6654902760',
       title: 'Samplify Sathi', platforms: 'iOS · Android · Gosamplify',
-      desc: 'Field-force management for phlebotomy operations, used by thousands of concurrent users.',
-      problem: 'Field staff had to pair BLE medical devices quickly and reliably, in real-world conditions, without the app getting in the way.',
-      build: 'A reusable BLE module with auto-connect, retry and manual fallback — cutting device pairing time by 90%. Swift and Kotlin native modules handle BLE state, permissions and background tasks.',
-      tags: ['React Native', 'BLE', 'Swift', 'Kotlin', 'Firebase', 'Redux Toolkit'],
+      desc: 'Field-force app for phlebotomists who collect blood samples at patients\' homes, used by thousands of concurrent users.',
+      meta: { Role: 'Lead React Native engineer', Scope: 'Architecture → release → monitoring', Since: 'Jan 2024' },
+      outcomes: [['90%', 'faster BLE pairing'], ['99.51%', 'crash-free sessions'], ['Same day', 'hotfixes over the air']],
+      problem: 'Phlebotomists pair Bluetooth medical devices, scan samples and capture handover proof at the patient\'s door, often on low-end Android phones with aggressive battery savers and patchy networks. Pairing failures used to stall a visit, and the staff using the app can\'t debug Bluetooth themselves.',
+      build: [
+        'A reusable BLE layer over react-native-ble-manager / ble-plx: scan, connect with a timeout, retry automatically, then fall back to manual pairing. Screens use it through a single hook.',
+        'Swift and Kotlin native modules for Bluetooth state, permissions and background tasks.',
+        'Background sync with react-native-background-fetch, so pending work uploads once the phone is back online.',
+        'VisionCamera barcode scanning for sample IDs, plus signature capture and PDF generation for handover proof.',
+        'FCM and Notifee notifications, and self-hosted OTA updates with Hot Updater on Firebase.',
+      ],
+      decisions: [
+        ['Retry automatically, then let the user take over', 'Retrying silently forever is worse than a clear manual option. Staff always know what to do next.'],
+        ['One BLE module, not Bluetooth calls in every screen', 'Device quirks get fixed in one place, and screens only deal with a small set of states.'],
+        ['JS changes over the air, native changes through the stores', 'Updates are tied to the app version, so a bundle never reaches a binary it doesn\'t work with.'],
+      ],
+      tags: ['React Native', 'BLE', 'Swift', 'Kotlin', 'VisionCamera', 'Firebase', 'Redux', 'Hot Updater'],
     },
     sarthi: {
       play: 'https://play.google.com/store/apps/details?id=com.samplify&hl=en-IN',
       ios: 'https://apps.apple.com/in/app/sarthi-runner/id6566180771',
       title: 'Samplify Sarthi', platforms: 'iOS · Android · Gosamplify',
-      desc: 'Logistics and sample-tracking platform for field operations.',
-      problem: 'Samples have to be tracked end-to-end even where network coverage is patchy.',
-      build: 'Real-time sync with a custom offline layer, plus a release process combining Crashlytics + Sentry monitoring and an OTA pipeline for same-day hotfixes — sustaining a 99.51% crash-free rate.',
-      tags: ['React Native', 'Swift', 'Kotlin', 'Firebase', 'CodePush'],
+      desc: 'Runner app for moving samples from collection points to labs, with live location, task flow and proof of handover.',
+      meta: { Role: 'Lead React Native engineer', Stack: 'RN 0.84 · React 19 · New Architecture', Since: 'Jan 2024' },
+      outcomes: [['99.51%', 'crash-free sessions'], ['~70%', 'faster release cycles'], ['8', 'services re-routable remotely']],
+      problem: 'Runners are on the move all day. Background location has to survive Android\'s battery limits, networks drop in transit, and on some phones the GPS silently hangs: the app looks fine while location data goes stale. Every backend migration also needed a new store release.',
+      build: [
+        'Background location tracking with a foreground service (react-native-background-actions) and a step-by-step location permission flow.',
+        'A GPS health monitor that wraps getCurrentPosition once, rules out settings causes, then requests a fix from the fused provider and the raw LocationManager at the same time to confirm a hung GPS. Covered by Jest tests.',
+        'Firebase Remote Config routing for 8 backend services, with validation, last-known-good values and local defaults to fall back on.',
+        'A Kotlin native module that autofills OTPs using Android\'s SMS Retriever and User Consent APIs.',
+        'Redux with redux-persist and versioned migrations, so updating the app never crashes on old saved state.',
+        'An OTA deploy guard that blocks any bundle without Sentry, plus one-command rollback.',
+      ],
+      decisions: [
+        ['Detect GPS failure from behaviour, not settings', 'Nothing in the phone\'s settings shows a hung GPS. Only repeated failed fixes reveal it.'],
+        ['Never trust a remote config value blindly', 'Validate it and fall back, so one bad value can\'t take the whole fleet offline.'],
+        ['Guard the release, not just the code', 'An OTA bundle without crash reporting fails silently, so the deploy script refuses to ship one.'],
+      ],
+      tags: ['React Native 0.84', 'Kotlin', 'Swift', 'Background location', 'Remote Config', 'Sentry', 'Hot Updater', 'Jest'],
     },
     phelans: {
       play: 'https://play.google.com/store/apps/details?id=com.phelans&hl=en-IN',
       title: 'Phelans Pharmacy', platforms: 'Android · Appinventiv',
       desc: 'Production healthcare e-commerce app for medicine delivery.',
-      problem: 'A catalog of thousands of SKUs had to stay fast across cart, profile and inventory flows.',
-      build: 'Redux Toolkit state architecture for cart, profile and inventory without performance regressions, and a migration from class components to functional components and custom hooks.',
+      meta: { Role: 'React Native engineer', Team: 'Appinventiv product team', When: '2022 to 2023' },
+      outcomes: [['1000s', 'of SKUs in the catalog'], ['0', 'performance regressions from the state redesign']],
+      problem: 'With thousands of SKUs, the cart, profile and inventory screens had to stay fast. An ageing class-component codebase made changes slow and risky.',
+      build: [
+        'Redux Toolkit state for cart, profile and inventory, using normalised data and memoised selectors so long lists stay smooth.',
+        'Moved class components to function components and custom hooks, one feature at a time.',
+        'Core shopping features against a Firestore-backed catalog.',
+      ],
+      decisions: [
+        ['Migrate one feature at a time, not all at once', 'Features kept shipping during the migration, and each step could be reviewed on its own.'],
+      ],
       tags: ['Redux Toolkit', 'Firestore', 'Hooks'],
     },
     lokbest: {
@@ -246,34 +282,54 @@
       ios: 'https://apps.apple.com/in/app/lokbest/id1571909931',
       title: 'LokBest', platforms: 'iOS · Android · Allin Info Systems',
       desc: 'Grocery commerce app.',
-      problem: 'Onboarding friction and limited visibility into how users moved through the app.',
-      build: 'Google and Facebook OAuth onboarding to improve login success, and Firebase Analytics instrumented with an event taxonomy designed alongside product.',
+      meta: { Role: 'Mobile owner (iOS & Android)', When: '2023' },
+      problem: 'Signing up took too many steps, and the team couldn\'t see how users moved through the app.',
+      build: [
+        'Google and Facebook OAuth sign-in to improve login success.',
+        'Firebase Analytics events, named and structured together with the product team.',
+      ],
+      decisions: [
+        ['Agree analytics event names before writing code', 'Product and engineering use the same event names, so the dashboards answer real questions.'],
+      ],
       tags: ['OAuth', 'Firebase Analytics'],
     },
     swagmee: {
       play: 'https://play.google.com/store/apps/details?id=com.swagmee&hl=en-IN',
       title: 'Swagmee Salon', platforms: 'Android · Allin Info Systems',
       desc: 'At-home salon services platform.',
-      problem: 'Booking and paying for services at home needed a smooth, trustworthy checkout.',
-      build: 'End-to-end Razorpay payments, Google / Facebook OAuth, and pixel-perfect UI implemented from Figma.',
+      meta: { Role: 'Mobile owner', When: '2023' },
+      problem: 'Booking and paying for at-home services needed a smooth checkout that customers could trust.',
+      build: [
+        'End-to-end Razorpay payments, including success, failure and retry states.',
+        'Google and Facebook OAuth sign-in.',
+        'Pixel-perfect UI built from Figma.',
+      ],
       tags: ['Razorpay', 'OAuth', 'Figma → RN'],
     },
   };
   const modal = $('[data-modal]');
+  const el = (tag, props = {}, ...kids) => { const n = Object.assign(document.createElement(tag), props); n.append(...kids); return n; };
   const openProject = (id) => {
     const p = PROJECTS[id];
     if (!p) return;
     $('[data-m-title]', modal).textContent = p.title;
     $('[data-m-platforms]', modal).textContent = p.platforms;
     $('[data-m-desc]', modal).textContent = p.desc;
+    $('[data-m-meta]', modal).replaceChildren(...Object.entries(p.meta || {}).map(([k, v]) => el('div', {}, el('dt', { textContent: k }), el('dd', { textContent: v }))));
+    const outcomes = $('[data-m-outcomes]', modal);
+    outcomes.hidden = !p.outcomes;
+    outcomes.replaceChildren(...(p.outcomes || []).map(([v, l]) => el('div', { className: 'outcome' }, el('strong', { textContent: v }), el('span', { textContent: l }))));
     $('[data-m-problem]', modal).textContent = p.problem;
-    $('[data-m-build]', modal).textContent = p.build;
+    $('[data-m-build]', modal).replaceChildren(...p.build.map((t) => el('li', { textContent: t })));
+    $('[data-m-decisions-wrap]', modal).hidden = !p.decisions;
+    $('[data-m-decisions]', modal).replaceChildren(...(p.decisions || []).map(([d, why]) => el('li', {}, el('strong', { textContent: d }), el('span', { textContent: why }))));
     const tags = $('[data-m-tags]', modal);
-    tags.replaceChildren(...p.tags.map((t) => Object.assign(document.createElement('span'), { textContent: t })));
+    tags.replaceChildren(...p.tags.map((t) => el('span', { textContent: t })));
     const stores = $('[data-m-stores]', modal);
-    const mk = (href, label) => Object.assign(document.createElement('a'), { href, textContent: label, className: 'btn btn--small', target: '_blank', rel: 'noopener' });
+    const mk = (href, label) => el('a', { href, textContent: label, className: 'btn btn--small', target: '_blank', rel: 'noopener' });
     stores.replaceChildren(...[p.play && mk(p.play, 'Get it on Google Play ↗'), p.ios && mk(p.ios, 'Download on the App Store ↗')].filter(Boolean));
     modal.showModal();
+    modal.scrollTop = 0;
   };
   $$('[data-open-project]').forEach((b) => b.addEventListener('click', () => openProject(b.dataset.openProject)));
   $('[data-close]', modal).addEventListener('click', () => modal.close());
@@ -301,6 +357,8 @@
   const go = (sel) => () => $(sel).scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
   const COMMANDS = [
     { label: 'Go to work', hint: 'section', run: go('#work') },
+    { label: 'Go to how I work', hint: 'section', run: go('#process') },
+    { label: 'Go to engineering notes', hint: 'section', run: go('#notes') },
     { label: 'Go to experience', hint: 'section', run: go('#experience') },
     { label: 'Go to skills', hint: 'section', run: go('#skills') },
     { label: 'Go to contact', hint: 'section', run: go('#contact') },
@@ -311,7 +369,7 @@
     { label: 'Open GitHub', hint: 'link', run: () => open('https://github.com/techAli17', '_blank', 'noopener') },
     { label: 'Toggle light / dark theme', hint: 'theme', run: toggleTheme },
     ...Object.entries(ACCENTS).map(([name, hex]) => ({ label: `Accent: ${name}`, hint: 'theme', swatch: hex, run: () => setAccent(name) })),
-    ...Object.entries(PROJECTS).map(([id, p]) => ({ label: `Open ${p.title}`, hint: 'project', run: () => openProject(id) })),
+    ...Object.entries(PROJECTS).map(([id, p]) => ({ label: `Case study: ${p.title}`, hint: 'project', run: () => openProject(id) })),
   ];
   let filtered = COMMANDS, sel = 0;
   const render = () => {
